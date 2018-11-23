@@ -1,0 +1,85 @@
+
+Mac Commands for GIT and shell
+-------------------------------------------------
+pwd - show present working directory
+~ is home directory in my case --> /USERS/WKULIK
+ls : list files
+ls -a : list all files including hidden, hidden start with .
+ls -l : list permissions and all file properties
+ls -al : combination of both
+clear : wipes out text in shell
+mkdir : make a directory
+cd : change directory
+touch <filename> : creates an empty file
+
+GIT Commands
+---------------------------------------------------
+git init : start new project
+git status : shows state of changes in repo
+ls .git : shows git directories and files
+
+// Set user properties of repo
+git config user.name "wkulik"
+git config user.email "will.kulik@gmail.com"
+cat .git/config
+
+git add <filename> : begin tracking this file
+git add . : add all untracked files and changes to other files
+git commit -m "First Commit" : commit with message
+
+// History
+git log : show history
+git log --oneline
+git log -2 : show last 2 commits
+git log --oneline -2 : show last 2 in oneline
+git log --after"2017-03-01" : show commits after a date
+git log --before"2018-03-01" : show commits before a date
+git log --after="2018-11-21T10:30" : show commits after 10:30
+git log --since="2 days ago"
+git log --after="1 week ago"
+git log --before="1 month ago"
+git log --author="Bill"
+
+// Rename
+git mv foo.txt bar.txt : rename file
+git commit -m "Moved foo.txt to bar.txt"
+
+git rm bar.txt : delete bar.txt
+.gitignore : list of file types to not track, like .class files, add this file to repo and commit it
+git diff --staged : shows what will be committed next commit
+git diff <hash> : shows what changes happened this commit
+git diff <hash1>..<hash2> : changes between 2 commits, use oldest first
+git commit --amend : pops up vi to edit last commit message
+git config core.editor "notepad++ --wait" : assign text editor
+
+// Undo changes
+git checkout -- bar.txt :
+git reset HEAD bar.txt : move tracked file to untracked 
+git reset HEAD --hard : overwrite all changes since last commit
+git reset HEAD^ --hard : rollback to changes in previous commit
+
+// Branching + Merging
+git branch <branchname> : create a named branch
+git branch : list branches, the * <branchname> in green is the one HEAD is pointing to.
+git checkout <branchname> : make HEAD point to branch
+git checkout master : point to master branch
+git merge <branchname> : perform merge, moves changes from branch to master
+// NOTE: When merge fails adds changes from both files, then you fix and add and commit.
+git branch -d <branchname> : delete the branch after the merge was successful
+git checkout -b <branchname> : create new branch and point HEAD at it
+
+// Rebasing - instead of merge, set HEAD to branch then move changes 
+// from master to branch with rebase command
+1) git branch <branchname>
+2) git rebase master : now the branch has all changes from the branch 
+3) git checkout master : make HEAD point to master
+4) git merge <branchname> : now master contains all changes and rebasing is complete
+
+// Tag
+git tag version-1.0 : tag this version as version-1.0
+git tag : list tags
+
+// Remote Repo - I setup a github account --> Github: wkulik/Bradley#98 passphrase: codymoe1
+origin  git@github.com:wkulik/test-remote-repo.git (fetch) - fetch gets changes from remote
+origin  git@github.com:wkulik/test-remote-repo.git (push) - moves local changes to remote
+
